@@ -9,7 +9,7 @@
 ## 快速生成
 
 ```bash
-python scripts/generate_funasr_mock_data.py \
+python3 scripts/generate_funasr_mock_data.py \
   --output-dir funasr_mock_data \
   --model fun-asr-nano-1225 \
   --num-train 100 \
@@ -72,13 +72,13 @@ data/valid/data.list
 如果你的 FunASR recipe 需要相对路径，可以加：
 
 ```bash
-python scripts/generate_funasr_mock_data.py --relative-paths
+python3 scripts/generate_funasr_mock_data.py --relative-paths
 ```
 
 ## 常用参数
 
 ```bash
-python scripts/generate_funasr_mock_data.py --help
+python3 scripts/generate_funasr_mock_data.py --help
 ```
 
 关键参数：
@@ -94,7 +94,7 @@ python scripts/generate_funasr_mock_data.py --help
 自定义文本例子：
 
 ```bash
-python scripts/generate_funasr_mock_data.py \
+python3 scripts/generate_funasr_mock_data.py \
   --text-file my_transcripts.txt \
   --output-dir funasr_mock_data_custom
 ```
