@@ -1,0 +1,5 @@
+__pycache__/
+*.py[cod]
+
+# Generated mock datasets can be large.
+funasr_mock_data*/
