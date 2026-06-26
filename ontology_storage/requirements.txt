@@ -1,0 +1,7 @@
+rdflib>=7.0.0
+owlrl>=6.0.2
+SPARQLWrapper>=2.0.0
+rich>=13.0.0
+sqlite-utils>=3.35
+pandas>=2.0.0
+pytest>=8.0.0

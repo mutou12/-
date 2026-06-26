@@ -1,0 +1,139 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix tkb: <http://example.org/tech-kb#> .
+
+# ── 本体声明 ──────────────────────────────────────────────────────────────────
+<http://example.org/tech-kb>
+    a owl:Ontology ;
+    rdfs:label "Technology Knowledge Base Ontology" ;
+    rdfs:comment "描述技术生态中各类技术栈的语义关系" .
+
+# ── 顶层类 ────────────────────────────────────────────────────────────────────
+tkb:Technology
+    a owl:Class ;
+    rdfs:label "Technology" ;
+    rdfs:comment "所有技术概念的基类" .
+
+tkb:ProgrammingLanguage
+    a owl:Class ;
+    rdfs:subClassOf tkb:Technology ;
+    rdfs:label "ProgrammingLanguage" .
+
+tkb:Framework
+    a owl:Class ;
+    rdfs:subClassOf tkb:Technology ;
+    rdfs:label "Framework" .
+
+tkb:Database
+    a owl:Class ;
+    rdfs:subClassOf tkb:Technology ;
+    rdfs:label "Database" .
+
+tkb:MLFramework
+    a owl:Class ;
+    rdfs:subClassOf tkb:Framework ;
+    rdfs:label "MLFramework" ;
+    rdfs:comment "机器学习/深度学习框架，是 Framework 的子类" .
+
+tkb:WebFramework
+    a owl:Class ;
+    rdfs:subClassOf tkb:Framework ;
+    rdfs:label "WebFramework" .
+
+tkb:GraphDatabase
+    a owl:Class ;
+    rdfs:subClassOf tkb:Database ;
+    rdfs:label "GraphDatabase" .
+
+tkb:RelationalDatabase
+    a owl:Class ;
+    rdfs:subClassOf tkb:Database ;
+    rdfs:label "RelationalDatabase" .
+
+tkb:VectorDatabase
+    a owl:Class ;
+    rdfs:subClassOf tkb:Database ;
+    rdfs:label "VectorDatabase" .
+
+tkb:Organization
+    a owl:Class ;
+    rdfs:label "Organization" ;
+    rdfs:comment "创建/维护技术的组织" .
+
+tkb:Paradigm
+    a owl:Class ;
+    rdfs:label "Paradigm" ;
+    rdfs:comment "编程范式，如 OOP、函数式、过程式等" .
+
+# ── 对象属性（关系） ──────────────────────────────────────────────────────────
+tkb:createdBy
+    a owl:ObjectProperty ;
+    rdfs:domain tkb:Technology ;
+    rdfs:range tkb:Organization ;
+    rdfs:label "createdBy" .
+
+tkb:primaryLanguage
+    a owl:ObjectProperty ;
+    rdfs:domain tkb:Framework ;
+    rdfs:range tkb:ProgrammingLanguage ;
+    rdfs:label "primaryLanguage" ;
+    rdfs:comment "框架主要用哪种语言开发/使用" .
+
+tkb:usedWith
+    a owl:ObjectProperty , owl:SymmetricProperty ;
+    rdfs:domain tkb:Technology ;
+    rdfs:range tkb:Technology ;
+    rdfs:label "usedWith" ;
+    rdfs:comment "常配合使用的技术，对称关系" .
+
+tkb:builtOn
+    a owl:ObjectProperty , owl:TransitiveProperty ;
+    rdfs:domain tkb:Technology ;
+    rdfs:range tkb:Technology ;
+    rdfs:label "builtOn" ;
+    rdfs:comment "构建于某技术之上，传递关系" .
+
+tkb:supportsParadigm
+    a owl:ObjectProperty ;
+    rdfs:domain tkb:ProgrammingLanguage ;
+    rdfs:range tkb:Paradigm ;
+    rdfs:label "supportsParadigm" .
+
+tkb:competitorOf
+    a owl:ObjectProperty , owl:SymmetricProperty ;
+    rdfs:domain tkb:Technology ;
+    rdfs:range tkb:Technology ;
+    rdfs:label "competitorOf" .
+
+# ── 数据属性（字面量） ────────────────────────────────────────────────────────
+tkb:releaseYear
+    a owl:DatatypeProperty ;
+    rdfs:domain tkb:Technology ;
+    rdfs:range xsd:integer ;
+    rdfs:label "releaseYear" .
+
+tkb:license
+    a owl:DatatypeProperty ;
+    rdfs:domain tkb:Technology ;
+    rdfs:range xsd:string ;
+    rdfs:label "license" .
+
+tkb:githubStars
+    a owl:DatatypeProperty ;
+    rdfs:domain tkb:Technology ;
+    rdfs:range xsd:integer ;
+    rdfs:label "githubStars" .
+
+tkb:description
+    a owl:DatatypeProperty ;
+    rdfs:domain tkb:Technology ;
+    rdfs:range xsd:string ;
+    rdfs:label "description" .
+
+tkb:latestVersion
+    a owl:DatatypeProperty ;
+    rdfs:domain tkb:Technology ;
+    rdfs:range xsd:string ;
+    rdfs:label "latestVersion" .

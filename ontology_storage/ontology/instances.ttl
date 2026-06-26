@@ -1,0 +1,146 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix tkb: <http://example.org/tech-kb#> .
+
+# ── 组织 ──────────────────────────────────────────────────────────────────────
+tkb:Google        a tkb:Organization ; rdfs:label "Google" .
+tkb:Meta          a tkb:Organization ; rdfs:label "Meta" .
+tkb:Microsoft     a tkb:Organization ; rdfs:label "Microsoft" .
+tkb:OpenAI        a tkb:Organization ; rdfs:label "OpenAI" .
+tkb:Hugging_Face  a tkb:Organization ; rdfs:label "Hugging Face" .
+tkb:PSF           a tkb:Organization ; rdfs:label "Python Software Foundation" .
+tkb:Apache        a tkb:Organization ; rdfs:label "Apache Foundation" .
+tkb:Neo4j_Inc     a tkb:Organization ; rdfs:label "Neo4j Inc." .
+tkb:Zilliz        a tkb:Organization ; rdfs:label "Zilliz" .
+
+# ── 编程范式 ──────────────────────────────────────────────────────────────────
+tkb:OOP            a tkb:Paradigm ; rdfs:label "Object-Oriented Programming" .
+tkb:Functional     a tkb:Paradigm ; rdfs:label "Functional Programming" .
+tkb:Imperative     a tkb:Paradigm ; rdfs:label "Imperative Programming" .
+tkb:DataScience    a tkb:Paradigm ; rdfs:label "Data Science Oriented" .
+
+# ── 编程语言 ──────────────────────────────────────────────────────────────────
+tkb:Python
+    a tkb:ProgrammingLanguage ;
+    rdfs:label "Python" ;
+    tkb:releaseYear 1991 ;
+    tkb:license "PSF-2.0" ;
+    tkb:latestVersion "3.12" ;
+    tkb:description "通用高级语言，AI/ML 领域事实标准" ;
+    tkb:createdBy tkb:PSF ;
+    tkb:supportsParadigm tkb:OOP , tkb:Functional , tkb:Imperative , tkb:DataScience .
+
+tkb:Rust
+    a tkb:ProgrammingLanguage ;
+    rdfs:label "Rust" ;
+    tkb:releaseYear 2015 ;
+    tkb:license "MIT OR Apache-2.0" ;
+    tkb:latestVersion "1.78" ;
+    tkb:description "内存安全系统编程语言" ;
+    tkb:createdBy tkb:Mozilla ;
+    tkb:supportsParadigm tkb:Functional , tkb:Imperative .
+
+tkb:TypeScript
+    a tkb:ProgrammingLanguage ;
+    rdfs:label "TypeScript" ;
+    tkb:releaseYear 2012 ;
+    tkb:license "Apache-2.0" ;
+    tkb:description "带静态类型的 JavaScript 超集" ;
+    tkb:createdBy tkb:Microsoft ;
+    tkb:supportsParadigm tkb:OOP , tkb:Functional .
+
+# ── ML框架 ───────────────────────────────────────────────────────────────────
+tkb:PyTorch
+    a tkb:MLFramework ;
+    rdfs:label "PyTorch" ;
+    tkb:releaseYear 2016 ;
+    tkb:license "BSD-3-Clause" ;
+    tkb:githubStars 82000 ;
+    tkb:description "Facebook 开源深度学习框架，动态计算图" ;
+    tkb:createdBy tkb:Meta ;
+    tkb:primaryLanguage tkb:Python ;
+    tkb:competitorOf tkb:TensorFlow .
+
+tkb:TensorFlow
+    a tkb:MLFramework ;
+    rdfs:label "TensorFlow" ;
+    tkb:releaseYear 2015 ;
+    tkb:license "Apache-2.0" ;
+    tkb:githubStars 185000 ;
+    tkb:description "Google 开源深度学习框架，静态/动态图" ;
+    tkb:createdBy tkb:Google ;
+    tkb:primaryLanguage tkb:Python ;
+    tkb:competitorOf tkb:PyTorch .
+
+tkb:Transformers
+    a tkb:MLFramework ;
+    rdfs:label "Hugging Face Transformers" ;
+    tkb:releaseYear 2018 ;
+    tkb:license "Apache-2.0" ;
+    tkb:githubStars 130000 ;
+    tkb:description "预训练 NLP 模型库" ;
+    tkb:createdBy tkb:Hugging_Face ;
+    tkb:primaryLanguage tkb:Python ;
+    tkb:builtOn tkb:PyTorch , tkb:TensorFlow .
+
+# ── Web框架 ───────────────────────────────────────────────────────────────────
+tkb:FastAPI
+    a tkb:WebFramework ;
+    rdfs:label "FastAPI" ;
+    tkb:releaseYear 2018 ;
+    tkb:license "MIT" ;
+    tkb:githubStars 75000 ;
+    tkb:description "高性能异步 Python Web 框架，自动生成 OpenAPI" ;
+    tkb:primaryLanguage tkb:Python ;
+    tkb:usedWith tkb:PyTorch , tkb:Transformers .
+
+tkb:Django
+    a tkb:WebFramework ;
+    rdfs:label "Django" ;
+    tkb:releaseYear 2005 ;
+    tkb:license "BSD-3-Clause" ;
+    tkb:description "全功能 Python Web 框架" ;
+    tkb:primaryLanguage tkb:Python ;
+    tkb:competitorOf tkb:FastAPI .
+
+# ── 数据库 ────────────────────────────────────────────────────────────────────
+tkb:Neo4j
+    a tkb:GraphDatabase ;
+    rdfs:label "Neo4j" ;
+    tkb:releaseYear 2007 ;
+    tkb:license "GPL-3.0 / Commercial" ;
+    tkb:description "主流图数据库，Cypher 查询语言" ;
+    tkb:createdBy tkb:Neo4j_Inc ;
+    tkb:competitorOf tkb:Milvus .
+
+tkb:PostgreSQL
+    a tkb:RelationalDatabase ;
+    rdfs:label "PostgreSQL" ;
+    tkb:releaseYear 1996 ;
+    tkb:license "PostgreSQL License" ;
+    tkb:description "开源关系型数据库，支持 JSON/向量扩展" .
+
+tkb:Milvus
+    a tkb:VectorDatabase ;
+    rdfs:label "Milvus" ;
+    tkb:releaseYear 2019 ;
+    tkb:license "Apache-2.0" ;
+    tkb:githubStars 30000 ;
+    tkb:description "开源向量数据库，专为 AI 应用设计" ;
+    tkb:createdBy tkb:Zilliz ;
+    tkb:usedWith tkb:Transformers , tkb:PyTorch .
+
+tkb:Chroma
+    a tkb:VectorDatabase ;
+    rdfs:label "ChromaDB" ;
+    tkb:releaseYear 2022 ;
+    tkb:license "Apache-2.0" ;
+    tkb:description "轻量嵌入式向量数据库" ;
+    tkb:competitorOf tkb:Milvus ;
+    tkb:usedWith tkb:Transformers .
+
+# ── usedWith 关系补充（对称属性，单向声明即可，推理后双向） ────────────────
+tkb:Python tkb:usedWith tkb:PyTorch .
+tkb:Python tkb:usedWith tkb:FastAPI .
+tkb:PyTorch tkb:usedWith tkb:Milvus .
