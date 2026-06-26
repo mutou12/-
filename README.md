@@ -11,11 +11,19 @@
 
 ```text
 .
+├── api
+│   ├── __init__.py
+│   ├── crud.py          # CRUD 逻辑
+│   ├── database.py      # DB 连接与会话
+│   ├── main.py          # FastAPI 入口
+│   ├── models.py        # SQLAlchemy 模型
+│   └── schemas.py       # Pydantic 请求/响应模型
 ├── demo.py
 ├── ontology_storage
 │   ├── __init__.py
 │   ├── ontology.py      # 本体定义 + 示例三元组
 │   └── storage.py       # SQLite 建表、入库、查询
+├── requirements.txt
 └── README.md
 ```
 
@@ -33,6 +41,49 @@ python3 demo.py
 
 === db-user 的上游依赖 ===
 - db-order
+```
+
+## FastAPI 文档存储服务（content JSON 方案）
+
+### 安装依赖
+
+```bash
+python3 -m pip install -r requirements.txt
+```
+
+### 启动服务
+
+```bash
+uvicorn api.main:app --reload
+```
+
+启动后访问：
+- Swagger: `http://127.0.0.1:8000/docs`
+
+### 示例：创建一条文档
+
+```bash
+curl -X POST "http://127.0.0.1:8000/docs" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "company_id": 1001,
+    "doc_type": "financial_report",
+    "doc_no": "FIN-2025-Q1",
+    "status": "valid",
+    "issue_date": "2025-04-20",
+    "expiry_date": null,
+    "content": {
+      "report_period": "2025Q1",
+      "revenue": 12000000,
+      "net_profit": 2200000
+    }
+  }'
+```
+
+### 示例：按公司查询文档
+
+```bash
+curl "http://127.0.0.1:8000/companies/1001/docs?doc_type=financial_report"
 ```
 
 ## 这套结构解决了什么
