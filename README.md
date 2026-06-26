@@ -12,8 +12,8 @@
 ## 快速运行
 
 ```bash
-PYTHONPATH=src python examples/healthcare_demo.py
-python -m unittest
+PYTHONPATH=src python3 examples/healthcare_demo.py
+python3 -m unittest
 ```
 
 示例输出会展示：

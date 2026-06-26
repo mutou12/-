@@ -2,7 +2,7 @@
 
 Execute from repo root:
 
-    PYTHONPATH=src python examples/healthcare_demo.py
+    PYTHONPATH=src python3 examples/healthcare_demo.py
 """
 
 from ontology_storage import Ontology, OntologyError, OntologyStore
